@@ -45,26 +45,6 @@ public class ChineseChess {
 				System.out.print(";   B: ");
 				System.out.println("e3");
 			}
-			
-			if (i != 3 && i != 6 && i != 9) {
-				System.out.print("A: ");
-				System.out.print((char)('c'+i%3));
-				System.out.print(10-i/3);
-				System.out.print(";   B: ");
-				System.out.println("f1");
-				
-				System.out.print("A: ");
-				System.out.print((char)('c'+i%3));
-				System.out.print(10-i/3);
-				System.out.print(";   B: ");
-				System.out.println("f2");
-				
-				System.out.print("A: ");
-				System.out.print((char)('c'+i%3));
-				System.out.print(10-i/3);
-				System.out.print(";   B: ");
-				System.out.println("f3");
-			}
 		}
 
 	}

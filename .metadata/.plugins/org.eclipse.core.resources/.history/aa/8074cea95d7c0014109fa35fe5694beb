@@ -1,0 +1,19 @@
+package nju.edu.cn;
+
+public class ChineseChess {
+
+	public static void main(String[] args) {
+		
+		for (int i = 1; i < 9; i++) {
+			
+			if (i != 1 && i != 4 && i != 7) {
+				System.out.print("A: ");
+				System.out.print((char)('c'+i%3));
+				System.out.print(10-i/3);
+				System.out.println(";   B: ");
+			}
+		}
+
+	}
+
+}
