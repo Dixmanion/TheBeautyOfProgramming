@@ -3,7 +3,7 @@ package nju.edu.cn;
 /**
  * 思路：递归，每一次翻动烙饼都从1到CakeArray.length循环
  * 翻动次数不会多于CakeArray.length*2，多于则返回
- * BFS？Reset代价太大？存储的量相当大
+ * BFS？Reset代价太大？
  * @author eureka
  *
  */

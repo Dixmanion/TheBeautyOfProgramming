@@ -3,7 +3,7 @@ package nju.edu.cn;
 /**
  * 思路：递归，每一次翻动烙饼都从1到CakeArray.length循环
  * 翻动次数不会多于CakeArray.length*2，多于则返回
- * BFS？Reset代价太大？存储的量相当大
+ * BFS？Reset代价太大？
  * @author eureka
  *
  */
@@ -88,7 +88,7 @@ public class PancakeSorting {
     	
     	if (isSorted(m_reverseCakeArray)) {
 			if (step < m_nMaxSwap) {
-				m_nMaxSwap = step;//若以后遇到比之前的step更小的完成方法，则记录下来
+				m_nMaxSwap = step;
 				for (i = 0; i < m_nMaxSwap; i++) {
 					m_swapArray[i] = m_reverseCakeArraySwap[i];
 				}
