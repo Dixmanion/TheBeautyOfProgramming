@@ -1,0 +1,44 @@
+package nju.edu.cn;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * POJ：http://poj.org/problem?id=3394
+ * @author eureka
+ *
+ */
+public class RoutePlanning {
+	
+	ArrayList<Integer>[] graph;
+	ArrayList<Integer>[] weights;
+	ArrayList<Integer> middleSpots;
+	int lengthOfRoute;
+	int spotsNum;
+	int routeNum;
+	
+	void processInput(){
+		try {
+			Scanner scanner =  new Scanner(new File("input/RoutePlanning.txt"));
+			spotsNum = scanner.nextInt();
+			routeNum = scanner.nextInt();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	void preprocess(){
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

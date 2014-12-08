@@ -1,0 +1,32 @@
+package nju.edu.cn;
+
+import java.lang.Thread.State;
+import java.util.Queue;
+
+/**
+ * 尝试用BFS解决pancake排序问题
+ * 类似于贪吃蛇问题
+ * @author eureka
+ *
+ */
+public class PancakeSortingBFS {
+	
+	int[] cakeArray;
+	int cakeCounter;
+	Queue<State> queue;
+	int step;
+	
+	public PancakeSortingBFS(){
+		cakeCounter = 0;
+	}
+	
+	void run(int[] pancakeArray){
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

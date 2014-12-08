@@ -1,0 +1,12 @@
+package nju.edu.cn;
+
+public class CakeState {
+	
+	int[] cakeArray;
+	String path;
+	
+	public CakeState(int[] array, String path){
+		
+	}
+
+}

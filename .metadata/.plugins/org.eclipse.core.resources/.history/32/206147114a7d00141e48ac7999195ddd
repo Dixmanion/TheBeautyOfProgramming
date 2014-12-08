@@ -1,0 +1,21 @@
+package nju.edu.cn;
+
+import java.util.ArrayList;
+
+/**
+ * POJ：http://poj.org/problem?id=3394
+ * @author eureka
+ *
+ */
+public class RoutePlanning {
+	
+	ArrayList<Integer> graph;
+	ArrayList<Integer> weights;
+	int lengthOfRoute;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

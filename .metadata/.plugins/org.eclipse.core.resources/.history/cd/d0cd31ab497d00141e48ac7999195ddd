@@ -1,0 +1,15 @@
+package nju.edu.cn;
+
+/**
+ * POJ：http://poj.org/problem?id=3394
+ * @author eureka
+ *
+ */
+public class RoutePlanning {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

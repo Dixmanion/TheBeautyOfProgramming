@@ -1,0 +1,8 @@
+package nju.edu.cn;
+
+public class CakeState {
+	
+	int[] cakeArray;
+	String path;
+
+}
