@@ -1,0 +1,23 @@
+package nju.edu.cn;
+
+public class ShellSort {
+
+	
+	public void shellSort(int[] a, int d) {
+		
+		for (int i = d; i < a.length; i++) {
+			int numToInsert = a[i];
+			int j;
+			for (j = i - d; j >= 0 && a[j] > numToInsert; j-=d) {
+				a[j+d] = a[j];
+			}
+			a[j+d] = numToInsert;
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

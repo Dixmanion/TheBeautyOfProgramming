@@ -7,9 +7,8 @@ public class Test {
 		// TODO Auto-generated method stub
 		int j = 10;
 		int d = 1;
-		//j=-d;
-		j-=d;
-		System.out.println(j);
+		j=-d;
+		System.out.println(j=-d);
 	}
 
 }
