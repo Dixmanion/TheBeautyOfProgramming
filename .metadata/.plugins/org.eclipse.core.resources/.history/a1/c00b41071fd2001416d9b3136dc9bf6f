@@ -1,0 +1,39 @@
+package nju.edu.cn;
+
+public class HeapSort {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+	public void heapSort(int[] array) {
+		
+		if (array == null || array.length == 0 || array.length == 1) { return; }
+		
+		for (int i = 0; i < array.length; i++) {
+			//交换数据
+			int max = array[0];
+			array[0] = array[array.length - 1];
+			array[array.length - 1] = max;
+		}
+	}
+	private void adjustHeap(int[] array, int length) {
+		
+		for (int i = (length/2 - 1); i >= 0; i--) {
+			//与左子树相比
+			if (array[i*2] > array[i]) {
+				int node = array[i];
+				array[i] = array[i*2];
+				array[i*2] = node;
+			}
+			//与右子树相比
+			if (i*2+1 <length && array[i*2+1] > array[i]) {
+				int node = array[i];
+				array[i] = array[i*2+1];
+				array[i*2+1] = node;
+			}
+		}
+	}
+}
