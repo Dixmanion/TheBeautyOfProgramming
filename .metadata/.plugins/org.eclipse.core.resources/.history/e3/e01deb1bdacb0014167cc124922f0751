@@ -1,0 +1,11 @@
+package cn.edu.nju.shared;
+
+public class EvenGenerator extends IntGenerator {
+
+	@Override
+	public int next() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

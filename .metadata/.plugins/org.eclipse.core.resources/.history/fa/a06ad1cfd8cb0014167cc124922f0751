@@ -1,0 +1,11 @@
+package cn.edu.nju.shared;
+
+public class EvenChecker implements Runnable {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

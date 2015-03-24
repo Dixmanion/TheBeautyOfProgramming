@@ -1,0 +1,30 @@
+package nju.edu.cn;
+
+public class QuickSort {
+	
+	public void quickSort(int[] array, int low, int high){
+		int compare = array[low];
+		int middle = (low + high) / 2;
+		
+		while (low < high) {
+			
+			if (array[high] < compare) {
+				array[low] = array[high];
+			}
+			high++;
+			
+			if (array[low] > compare) {
+				
+			}
+		}
+		
+		quickSort(array, low, middle-1);
+		quickSort(array, middle, high);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

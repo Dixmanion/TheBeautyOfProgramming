@@ -1,0 +1,7 @@
+package cn.edu.nju.shared;
+
+public class Toast {
+	
+	public enum Status {DRY, BUTTERED, JAMMED};
+
+}

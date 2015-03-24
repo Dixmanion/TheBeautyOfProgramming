@@ -1,0 +1,7 @@
+package cn.edu.nju.shared;
+
+public class Meal {
+
+	private final int orderNum;
+	public Meal(int orderNum) { this.orderNum = orderNum; }
+}

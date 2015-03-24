@@ -1,0 +1,33 @@
+package cn.edu.nju.shared;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+public class Toaster implements Runnable {
+	
+	private ToastQueue queue;
+	private static int counter = 0;
+	private Random random = new Random(47);
+	
+	public Toaster(ToastQueue queue) {
+		this.queue = queue;
+	}
+
+	@Override
+	public void run() {
+		try{
+			while (!Thread.interrupted() ) {
+				TimeUnit.MILLISECONDS.sleep(100 + random.nextInt(500));
+				Toast toast = new Toast(++counter);
+				System.out.println(toast);
+				queue.put(toast);
+				System.out.println(queue.size());
+			}
+			System.out.println("Exit from Toaster while!");
+		}catch (InterruptedException e) {
+			System.out.println("Toaster while interrupted!");
+		}
+
+	}
+
+}

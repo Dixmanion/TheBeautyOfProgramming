@@ -1,0 +1,22 @@
+package cn.edu.nju.shared;
+
+public class Chef implements Runnable {
+	
+	private Restaurant r;
+	public Chef(Restaurant r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (!Thread.interrupted()) {
+				
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+}

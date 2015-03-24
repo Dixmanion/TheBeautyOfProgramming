@@ -1,0 +1,11 @@
+package cn.edu.nju.shared;
+
+public class ToastTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ToastQueue dryQueue = new ToastQueue();
+		ToastQueue butteredQueue = new ToastQueue();
+	}
+
+}

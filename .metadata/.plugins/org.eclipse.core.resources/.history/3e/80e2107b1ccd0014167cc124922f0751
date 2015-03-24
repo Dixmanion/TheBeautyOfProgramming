@@ -1,0 +1,24 @@
+package cn.edu.nju.shared;
+
+public class Jammer implements Runnable {
+	
+	private ToastQueue butteredToasts;
+	private ToastQueue finishedToasts;
+	
+	public Jammer(ToastQueue butteredToasts, ToastQueue finishedToasts) {
+		this.butteredToasts = butteredToasts;
+		this.finishedToasts = finishedToasts;
+	}
+
+	@Override
+	public void run() {
+		try{
+			while(!Thread.interrupted()) {
+				
+			}
+			System.out.println("Exit fron Jammer while!");
+		} 
+
+	}
+
+}

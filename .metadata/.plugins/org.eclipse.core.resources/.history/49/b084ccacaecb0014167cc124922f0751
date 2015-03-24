@@ -1,0 +1,24 @@
+package cn.edu.nju;
+
+
+public class ListOff implements Runnable {
+	
+	protected int countDown = 10;
+	private static int taskCount = 0;
+	private final int id = taskCount++;
+	
+	public ListOff() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ListOff(int countDown) {
+		this.countDown = countDown;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

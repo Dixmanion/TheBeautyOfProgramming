@@ -1,0 +1,14 @@
+package nju.edu.cn;
+
+public class QuickSort {
+	
+	public void quickSort(int[] array, int low, int high){
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;middle&apos; in &apos;nju.edu.cn.QuickSort.quickSort(...)&apos; to &apos;compare&apos;&#x0A;- Original project: &apos;ProblemSolving&apos;&#x0A;- Original element: &apos;nju.edu.cn.QuickSort.quickSort(int[], int, int).middle&apos;&#x0A;- Renamed element: &apos;middle&apos;&#x0A;- Update references to refactored element" description="Rename local variable &apos;middle&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;nju.edu.cn{QuickSort.java[QuickSort~quickSort~\[I~I~I@middle!106!129!110!115!I!0!false" name="compare" references="true" stamp="1426232326512" version="1.0"/>
+</session>

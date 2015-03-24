@@ -1,0 +1,24 @@
+package cn.edu.nju.shared;
+
+public class Eater implements Runnable {
+	
+	private ToastQueue finishedQueue;
+	private static int count = 0;
+	
+	public Eater(ToastQueue finishedQueue) {
+		this.finishedQueue = finishedQueue;
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (!Thread.interrupted()) {
+				Toast toast = finishedQueue.take();
+			}
+			System.out.println();
+		} catch (InterruptedException e) {
+			
+		}
+	}
+
+}

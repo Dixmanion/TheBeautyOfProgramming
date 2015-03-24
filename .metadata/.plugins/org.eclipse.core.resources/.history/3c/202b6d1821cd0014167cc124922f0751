@@ -1,0 +1,30 @@
+package cn.edu.nju.shared;
+
+
+public class Butter implements Runnable {
+	
+	private ToastQueue dryToasts;
+	private ToastQueue butteredToasts;
+	
+	public Butter(ToastQueue dtyToasts, ToastQueue butteredToasts) {
+		this.dryToasts = dtyToasts;
+		this.butteredToasts = butteredToasts;
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (!Thread.interrupted()) {
+				Toast t = dryToasts.take();//此处可能被阻塞，故不需要sleep
+				t.butter();
+				System.out.println("Butter " + t);
+				butteredToasts.add(t);
+				//TimeUnit.MILLISECONDS.sleep(10);
+			}
+			System.out.println("Exit from Butter while!");
+		} catch (InterruptedException e) {
+			System.out.println("Butter while interrupted!");
+		}
+	}
+
+}

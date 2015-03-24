@@ -1,0 +1,19 @@
+package cn.edu.nju.shared;
+
+public class Butter implements Runnable {
+	
+	private ToastQueue dryToasts;
+	private ToastQueue butteredToasts;
+	
+	public Butter(ToastQueue dtyToasts, ToastQueue butteredToasts) {
+		this.dryToasts = dtyToasts;
+		this.butteredToasts = butteredToasts;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

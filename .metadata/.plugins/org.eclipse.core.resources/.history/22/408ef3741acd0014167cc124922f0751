@@ -1,0 +1,7 @@
+package cn.edu.nju.shared;
+
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class ToastQueue extends LinkedBlockingQueue<E> {
+
+}

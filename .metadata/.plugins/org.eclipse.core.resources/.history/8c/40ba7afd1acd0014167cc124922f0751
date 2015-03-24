@@ -1,0 +1,18 @@
+package cn.edu.nju.shared;
+
+public class Toaster implements Runnable {
+	
+	private ToastQueue queue;
+	private static int counter = 0;
+	
+	public Toaster(ToastQueue queue) {
+		this.queue = queue;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

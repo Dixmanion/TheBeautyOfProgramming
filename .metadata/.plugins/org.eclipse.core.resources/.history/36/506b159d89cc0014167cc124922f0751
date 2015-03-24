@@ -1,0 +1,36 @@
+package cn.edu.nju.shared;
+
+public class Chef implements Runnable {
+	
+	private Restaurant r;
+	private int count = 0;
+	public Chef(Restaurant r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		try {
+			while (!Thread.interrupted()) {
+				
+				synchronized (this) {
+					while (r.meal != null) {
+						wait();
+					}
+				}
+				
+				Meal meal = new Meal(count++);
+				System.out.println("Order up!");
+				
+				synchronized (r.waiter) {
+					r.meal = meal;
+					r.waiter.notifyAll();
+				}
+			}
+			System.out.println("Exit from chef while");
+		} catch (InterruptedException e) {
+			System.out.println("Chef interrupted!");
+		}
+	}
+
+}

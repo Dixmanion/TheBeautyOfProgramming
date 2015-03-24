@@ -1,0 +1,16 @@
+package nju.edu.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Map<Integer, Integer> testMap = new HashMap<Integer, Integer>();
+		testMap.put(1, 1);
+		System.out.println(testMap.get(2));
+	}
+
+}

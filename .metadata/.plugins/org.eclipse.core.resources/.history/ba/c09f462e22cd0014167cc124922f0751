@@ -1,0 +1,26 @@
+package cn.edu.nju.shared;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class ToastTest {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		ToastQueue dryQueue = new ToastQueue();
+		ToastQueue butteredQueue = new ToastQueue();
+		ToastQueue jammedQueue = new ToastQueue();
+		
+		ExecutorService executorService = Executors.newCachedThreadPool();
+		Toaster toaster = new Toaster(dryQueue);
+		executorService.execute(toaster);
+		executorService.execute(new Toaster(dryQueue));
+		executorService.execute(new Butter(dryQueue, butteredQueue));
+		executorService.execute(new Jammer(butteredQueue, jammedQueue));
+		executorService.execute(new Eater(jammedQueue));
+		TimeUnit.SECONDS.sleep(4);
+		executorService.shutdownNow();
+	}
+
+}
