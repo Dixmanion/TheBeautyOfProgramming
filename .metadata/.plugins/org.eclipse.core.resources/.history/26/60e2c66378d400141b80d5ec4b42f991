@@ -1,0 +1,32 @@
+package nju.edu.cn;
+
+import java.util.Set;
+
+public class WordLadder {
+	
+	//BFS
+    public int ladderLength(String start, String end, Set<String> dict) {
+    	
+    	boolean containsStart = dict.contains(start);
+    	if (containsStart) dict.remove(start);
+    	
+    	int steps = ladderLength();
+    	
+    	if (containsStart) dict.add(start);
+    	
+    	return 0;
+    }
+    
+    private boolean canBeTransferred(String from, String to){
+    	
+    	//只允许有一个字母不一样，from和to的长度相同
+    	int dif = 0;
+    	for (int i = 0; i < from.length(); i++) {
+			if (from.charAt(i) != to.charAt(i))
+				dif++;
+		}
+    	
+    	return dif==1;
+    }
+
+}

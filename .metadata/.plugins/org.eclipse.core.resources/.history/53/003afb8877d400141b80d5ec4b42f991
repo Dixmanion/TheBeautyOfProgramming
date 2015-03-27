@@ -1,0 +1,18 @@
+package nju.edu.cn;
+
+import java.util.Set;
+
+public class WordLadder {
+	
+	//BFS
+    public int ladderLength(String start, String end, Set<String> dict) {
+    	
+    	boolean containsStart = dict.contains(start);
+    	if (containsStart) dict.remove(start);
+    	
+    	
+    	
+    	return 0;
+    }
+
+}

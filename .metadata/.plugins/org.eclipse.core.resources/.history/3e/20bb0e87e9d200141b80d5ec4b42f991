@@ -1,0 +1,25 @@
+package nju.edu.cn;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int j = 10;
+		int d = 1;
+		//j=-d;
+		j-=d;
+		System.out.println(j);
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+		StringBuffer stringBuffer = new StringBuffer("");
+		System.out.println(stringBuffer.length());
+		char i = 'i';
+		String temp = "ap";
+		temp = temp + "nice";
+		System.out.println(temp);
+	}
+
+}

@@ -1,0 +1,25 @@
+package nju.edu.cn;
+
+import java.util.Set;
+
+public class WordLadder {
+	
+	//BFS
+    public int ladderLength(String start, String end, Set<String> dict) {
+    	
+    	boolean containsStart = dict.contains(start);
+    	if (containsStart) dict.remove(start);
+    	
+    	int steps = ladderLength();
+    	
+    	if (containsStart) dict.add(start);
+    	
+    	return 0;
+    }
+    
+    private boolean canBeTransferred(String from, String to){
+    	
+    	return false;
+    }
+
+}

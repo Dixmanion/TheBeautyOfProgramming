@@ -1,0 +1,53 @@
+package nju.edu.cn;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class WordLadder {
+	
+	//BFS
+    public int ladderLength(String start, String end, Set<String> dict) {
+    	
+    	boolean containsStart = dict.contains(start);
+    	if (containsStart) dict.remove(start);
+    	
+    	Set<String> candidates = getCandidates(start, dict);
+    	for (String candidate : candidates) {
+    		int stepsNext = ladderLength(candidate, end, dict);
+		}
+    	
+    	
+    	if (containsStart) dict.add(start);
+    	
+    	return 0;
+    }
+    
+    /**
+     * 返回start的候选集
+     * @param start
+     * @param dict
+     * @return
+     */
+    private Set<String> getCandidates(String start, Set<String> dict){
+    	Set<String> candidates = new HashSet<String>();
+    	
+    	for (String word : dict) {
+    		if (this.canBeTransferred(start, word))
+    			candidates.add(word);
+    	}
+    	return candidates;
+    }
+    
+    private boolean canBeTransferred(String from, String to){
+    	
+    	//只允许有一个字母不一样，from和to的长度相同
+    	int dif = 0;
+    	for (int i = 0; i < from.length(); i++) {
+			if (from.charAt(i) != to.charAt(i))
+				dif++;
+		}
+    	
+    	return dif==1;
+    }
+
+}

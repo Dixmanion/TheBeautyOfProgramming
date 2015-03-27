@@ -1,0 +1,10 @@
+package nju.edu.cn;
+
+public class WordLadder {
+	
+	//BFS
+    public int ladderLength(String start, String end, Set<String> dict) {
+        
+    }
+
+}
