@@ -1,0 +1,344 @@
+package nju.edu.cn;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+
+/**
+ * 改进1：判断一个单词是否可被转换成另一个单词（Character iteration）
+ * 改进2：尝试使用back-tracking，不用List存储访问过的点
+ * 改进3：先利用BFS构建邻接约束图（adjacent graph），再利用DSF遍历邻接图来构建最短路径们
+ * @author eureka
+ *
+ */
+public class WordLadderII {
+
+	public static void main(String[] args) {
+		WordLadderII wordLadder = new WordLadderII();
+		String start = "red";
+		String end = "tax";
+		Set<String> dict = new HashSet<String>();
+		dict.add("red");
+		dict.add("tax");
+		dict.add("ted");
+		dict.add("tex");
+		dict.add("tad");
+		dict.add("den");
+		dict.add("rex");
+		dict.add("pee");
+		List<List<String>> answer = wordLadder.findLadders(start, end, dict);
+		System.out.println(answer.toString());
+	}
+	
+	
+	
+	
+//	List<List<String>> result;
+//	List<String> list;
+//	Map<String, List<String>> map;
+//	
+//	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+//		result = new ArrayList<List<String>>();
+//		
+//		if (dict == null || dict.isEmpty()) return result;
+//		
+//		int current = 1, next = 0;//next是下一轮BFS的个数，current是此轮BFS还剩多少次结束
+//		boolean found = false;
+//		list = new LinkedList<String>();
+//		map = new HashMap<String, List<String>>();
+//		
+//		Queue<String> queue = new ArrayDeque<String>();
+//		Set<String> unvisited = new HashSet<String>(dict);
+//		Set<String> visited = new HashSet<String>();
+//		
+//		queue.add(start);
+//		unvisited.add(end);
+//		unvisited.remove(start);
+//		
+//		//BFS
+//		while (!queue.isEmpty()) {
+//			
+//			String word = queue.poll();
+//			current-- ;
+//			
+//			for (int i = 0; i < word.length(); i++) {
+//				StringBuilder builder = new StringBuilder(word);
+//				
+//				for (char ch = 'a'; ch <='z'; ch++) {
+//					builder.setCharAt(i, ch);
+//					String newWord = builder.toString();
+//					
+//					if (unvisited.contains(newWord)) {
+//						
+//						if (visited.add(newWord)) {
+//							next++;
+//							queue.add(newWord);
+//						}
+//						
+//						if (map.containsKey(newWord)) {
+//							map.get(newWord).add(word);
+//						} else {
+//							List<String> l = new LinkedList<String>();
+//							l.add(word);
+//							map.put(newWord, l);
+//						}
+//						
+//						if (newWord.equals(end) && !found) found = true;
+//					}
+//				}//end for 'a' to 'z'
+//			}//end word length
+//			
+//			if (current == 0) {
+//				if (found) break;
+//				
+//				current = next;
+//				next = 0;
+//				unvisited.removeAll(visited);
+//				visited.clear();
+//			}
+//		}//end while
+//		
+//		backTrace(end, start);
+//		
+//		return result;
+//	}
+//	
+//	
+//	private void backTrace(String word, String start) {
+//		if (word.equals(start)) {
+//			list.add(0, start);
+//			result.add(new ArrayList<String>(list));
+//			list.remove(0);
+//		}
+//		list.add(0, word);
+//		if (map.get(word) != null) {
+//			for (String string : map.get(word)) {
+//				backTrace(string, start);
+//			}
+//		}
+//		list.remove(0);
+//	}
+	
+	List<List<String>> result;
+	Map<String, Set<String>> adjacentGraph;
+	List<String> list;
+	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+		result = new ArrayList<List<String>>();
+		adjacentGraph = new HashMap<String, Set<String>>();
+		list = new ArrayList<String>();
+		
+		Queue<String> queue = new ArrayDeque<String>();
+		//用于构造图的集合
+		Set<String> unvisited = new HashSet<String>(dict);
+		Set<String> visited = new HashSet<String>();
+		boolean found = false;
+		
+		queue.add(start);
+		unvisited.add(end);
+		unvisited.remove(start);
+		visited.add(start);
+		
+		int current = 1, next = 0;
+		
+		while (!queue.isEmpty()) {
+			String string = queue.poll();
+			current--;
+			
+			for (int i = 0; i < string.length(); i++) {
+				for (char j = 'a'; j <= 'z'; j++) {
+					StringBuilder builder = new StringBuilder(string);
+					builder.setCharAt(i, j);
+					String newString = builder.toString();
+					
+					if (unvisited.contains(newString)) {
+						
+						if (visited.add(newString)) {
+							next++;
+							queue.add(newString);
+						}
+						
+						if (adjacentGraph.containsKey(newString)) {
+							adjacentGraph.get(newString).add(string);
+						} else {
+							Set<String> set = new HashSet<String>();
+							set.add(string);
+							adjacentGraph.put(newString, set);
+						}
+						
+						if (newString.endsWith(end)) {
+							found = true;
+						}
+					}
+				}//end character iterator 
+				
+			}//end word length 
+			
+			if (current == 0) {
+				if (found) break;
+				
+				current = next;
+				next = 0;
+				unvisited.removeAll(visited);
+				visited.clear();
+			}
+		}
+		
+		return result;
+	}
+	
+	private void backTracing(String start, String word){
+		if (word.equals(start)) {
+			list.add(0, start);
+			result.add(new ArrayList<String>(list));
+			list.remove(0);
+		}
+		list.add(0, word);
+		if (adjacentGraph.get(word) != null) {
+			for (String str : adjacentGraph.get(word)) {
+				backTracing(start, str);
+			}
+		}
+		list.remove(0);
+	}
+	
+	public List<List<String>> findLadders(String start, String end, Set<String> dict, int in) {
+        List<List<String>> paths = new ArrayList<List<String>>();
+        
+        Queue<List<String>> pathQueue = new LinkedList<List<String>>();
+        Queue<Integer> steps = new LinkedList<Integer>();
+        int maxStep = -1;
+        
+        int lastStep = 1;
+        Set<String> toRemove = new HashSet<String>();
+        toRemove.add(start);
+        
+        List<String> path = new ArrayList<String>();
+        path.add(start);
+        pathQueue.add(path);
+        steps.add(1);
+        
+        while (!pathQueue.isEmpty()) {
+        	
+			List<String> pathBefore = pathQueue.poll();
+			String last = pathBefore.get(pathBefore.size() - 1);
+			int step = steps.poll();
+			
+			if (step == (lastStep+1)) {
+				dict.remove(toRemove);
+				toRemove.clear();
+			}
+			
+			char[] charArray = last.toCharArray();
+			
+			for (int i = 0; i < charArray.length; i++) {
+				
+				for (char j = 'a'; j <= 'z'; j++) {
+					
+					if (charArray[i] == j) continue;
+					charArray[i] = j;
+					
+					String newString = String.valueOf(charArray);
+					
+					if (newString.equals(end) && (maxStep == -1 || step < maxStep)) {
+						List<String> newPath = new ArrayList<String>();
+						newPath.addAll(pathBefore);
+						newPath.add(end);
+						paths.add(newPath);
+						maxStep = step + 1;
+						continue;
+					} else {
+						if (maxStep == -1 && dict.contains(newString)) {
+							List<String> newPath = new ArrayList<String>();
+							newPath.addAll(pathBefore);
+							newPath.add(newString);
+							pathQueue.add(newPath);
+							steps.add(step+1);
+							toRemove.add(newString);
+						}
+					}
+					charArray[i] = last.charAt(i);
+				}
+				
+			}
+			
+		}
+        
+//        while (!pathQueue.isEmpty()) {
+//			List<String> pathBefore = pathQueue.poll();
+//			int step = steps.poll();
+//			String last = pathBefore.get(pathBefore.size() - 1);
+//			
+//			System.out.println("Path: " + pathBefore.toString());
+//			
+//			if (canBeTransferred(last, end)) {
+//				List<String> newPath = new ArrayList<String>();
+//				newPath.addAll(pathBefore);
+//				newPath.add(end);
+//				paths.add(newPath);
+//				maxStep = step + 1;
+//				continue;
+//			}
+//			
+//			if (maxStep == -1) {
+//				
+//				Set<String> candidates = getCandidates(last, dict);
+//				
+//				System.out.println("Candidates: " + candidates.toString());
+//				
+//				for (String candidate : candidates) {
+//					List<String> newPath = new ArrayList<String>();
+//					newPath.addAll(pathBefore);
+//					newPath.add(candidate);
+//					pathQueue.add(newPath);
+//					steps.add(step + 1);
+//					dict.remove(candidate);
+//				}
+//				
+//			} else if (step < maxStep && canBeTransferred(last, end)){
+//				List<String> newPath = new ArrayList<String>();
+//				newPath.addAll(pathBefore);
+//				newPath.add(end);
+//				paths.add(newPath);
+//				maxStep = step + 1;
+//				continue;
+//			}
+//			
+//		}
+        
+        return paths;
+    }
+	
+	/**
+     * 返回start的候选集
+     * @param start
+     * @param dict
+     * @return
+     */
+    private Set<String> getCandidates(String start, Set<String> dict){
+    	Set<String> candidates = new HashSet<String>();
+    	
+    	for (String word : dict) {
+    		if (canBeTransferred(start, word))
+    			candidates.add(word);
+    	}
+    	return candidates;
+    }
+    
+    private boolean canBeTransferred(String from, String to){
+    	//只允许有一个字母不一样，from和to的长度相同
+    	int dif = 0;
+    	for (int i = 0; i < from.length(); i++) {
+			if (from.charAt(i) != to.charAt(i))
+				dif++;
+		}
+    	return dif==1;
+    }
+
+}

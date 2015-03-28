@@ -1,0 +1,160 @@
+package nju.edu.cn;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+
+public class WordLadderII {
+
+	public static void main(String[] args) {
+		WordLadderII wordLadder = new WordLadderII();
+		String start = "hit";
+		String end = "cog";
+		Set<String> dict = new HashSet<String>();
+//		dict.add("hit");
+//		dict.add("cog");
+		dict.add("hot");
+		dict.add("dot");
+		dict.add("dog");
+		dict.add("lot");
+		dict.add("log");
+		List<List<String>> answer = wordLadder.findLadders(start, end, dict);
+		System.out.println(answer.toString());
+	}
+	
+	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
+        List<List<String>> paths = new ArrayList<List<String>>();
+        
+        Queue<List<String>> pathQueue = new LinkedList<List<String>>();
+        Queue<Integer> steps = new LinkedList<Integer>();
+        int maxStep = -1;
+        
+        List<String> path = new ArrayList<String>();
+        path.add(start);
+        pathQueue.add(path);
+        steps.add(1);
+        
+        while (!pathQueue.isEmpty()) {
+			List<String> pathBefore = pathQueue.poll();
+			String last = pathBefore.get(pathBefore.size() - 1);
+			int step = steps.poll();
+			
+			char[] charArray = last.toCharArray();
+			
+			for (int i = 0; i < charArray.length; i++) {
+				
+				for (char j = 'a'; j <= 'z'; j++) {
+					
+					if (charArray[i] == j) continue;
+					charArray[i] = j;
+					
+					String newString = String.valueOf(charArray);
+					System.out.println("New String is " + newString);
+					
+					if (newString.equals(end) && (maxStep == -1 || step < maxStep)) {
+						System.out.println("Add new path, newString is " + newString + ", end is " + end);
+						List<String> newPath = new ArrayList<String>();
+						newPath.addAll(pathBefore);
+						newPath.add(end);
+						paths.add(newPath);
+						maxStep = step + 1;
+						continue;
+					} else {
+						if (maxStep == -1 && dict.contains(newString)) {
+							dict.remove(newString);
+							List<String> newPath = new ArrayList<String>();
+							newPath.addAll(pathBefore);
+							newPath.add(newString);
+							pathQueue.add(newPath);
+							steps.add(step+1);
+//						} else if (step < maxStep && ){
+//							List<String> newPath = new ArrayList<String>();
+//							newPath.addAll(pathBefore);
+//							newPath.add(end);
+//							paths.add(newPath);
+//							maxStep = step + 1;
+//							continue;
+						}
+					}
+					
+					charArray[i] = last.charAt(i);
+				}
+			}
+			
+		}
+        
+//        while (!pathQueue.isEmpty()) {
+//			List<String> pathBefore = pathQueue.poll();
+//			int step = steps.poll();
+//			String last = pathBefore.get(pathBefore.size() - 1);
+//			
+//			System.out.println("Path: " + pathBefore.toString());
+//			
+//			if (canBeTransferred(last, end)) {
+//				List<String> newPath = new ArrayList<String>();
+//				newPath.addAll(pathBefore);
+//				newPath.add(end);
+//				paths.add(newPath);
+//				maxStep = step + 1;
+//				continue;
+//			}
+//			
+//			if (maxStep == -1) {
+//				
+//				Set<String> candidates = getCandidates(last, dict);
+//				
+//				System.out.println("Candidates: " + candidates.toString());
+//				
+//				for (String candidate : candidates) {
+//					List<String> newPath = new ArrayList<String>();
+//					newPath.addAll(pathBefore);
+//					newPath.add(candidate);
+//					pathQueue.add(newPath);
+//					steps.add(step + 1);
+//					dict.remove(candidate);
+//				}
+//				
+//			} else if (step < maxStep && canBeTransferred(last, end)){
+//				List<String> newPath = new ArrayList<String>();
+//				newPath.addAll(pathBefore);
+//				newPath.add(end);
+//				paths.add(newPath);
+//				maxStep = step + 1;
+//				continue;
+//			}
+//			
+//		}
+        
+        return paths;
+    }
+	
+	/**
+     * 返回start的候选集
+     * @param start
+     * @param dict
+     * @return
+     */
+    private Set<String> getCandidates(String start, Set<String> dict){
+    	Set<String> candidates = new HashSet<String>();
+    	
+    	for (String word : dict) {
+    		if (canBeTransferred(start, word))
+    			candidates.add(word);
+    	}
+    	return candidates;
+    }
+    
+    private boolean canBeTransferred(String from, String to){
+    	//只允许有一个字母不一样，from和to的长度相同
+    	int dif = 0;
+    	for (int i = 0; i < from.length(); i++) {
+			if (from.charAt(i) != to.charAt(i))
+				dif++;
+		}
+    	return dif==1;
+    }
+
+}
