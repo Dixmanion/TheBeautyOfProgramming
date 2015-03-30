@@ -1,0 +1,28 @@
+package nju.edu.cn.leetcode;
+
+import java.util.Set;
+
+public class WordBreak {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String string = "abc";
+		System.out.println(string.substring(3));
+	}
+
+	public boolean wordBreak(String s, Set<String> dict) {
+        if (dict == null || dict.isEmpty()) {
+			return false;
+		}
+        
+        if (s.length() == 0) {
+			return true;
+		}
+        
+        for (int i = 0; i < s.length(); i++) {
+			
+		}
+        
+        return false;
+    }
+}

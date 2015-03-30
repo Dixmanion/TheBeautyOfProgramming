@@ -1,0 +1,93 @@
+package nju.edu.cn.leetcode;
+
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Queue;
+import java.util.Set;
+/**
+ * DFS和BFS均未能打到性能要求
+ * 优化：使用动态规划，需要记录
+ * @author eureka
+ *
+ */
+public class WordBreak {
+
+	public static void main(String[] args) {
+		String string = "abc";
+		System.out.println(string.substring(0,0).length());
+	}
+
+	private int longestWord(Set<String> dict) {
+		if (dict == null || dict.isEmpty()) return 0;
+		int result = 0;
+		for (String word : dict) {
+			if (word.length() > result) 
+				result = word.length();
+		}
+		return result;
+	}
+	
+	public boolean wordBreak(String s, Set<String> dict) {
+        if (dict == null || dict.isEmpty()) {
+			return false;
+		}
+        
+        if (s.length() == 0) {
+			return true;
+		}
+        
+        boolean[] f = new boolean[s.length()+1];
+        Arrays.fill(f, false);
+        f[0] = true;
+        
+        
+        for (int i = 1; i <= s.length(); i++) {
+        	
+        	for (int j = 0; j < i; j++) {
+        		if (f[j] && dict.contains(s.substring(j, i))) {
+        			f[i] = true;
+        			break;
+        		}
+        	}
+        }
+        return f[s.length()];
+//        int longest = longestWord(dict);
+//        
+//        Queue<Integer> queue = new ArrayDeque<Integer>();
+//        queue.add(0);
+//        
+//        while (!queue.isEmpty()) {
+//        	StringBuilder builder = new StringBuilder();
+//        	int index = queue.poll();
+//        	if (index == s.length()) return true;
+//        	
+//        	for (int i = index; i < s.length() && i < (index + longest); i++) {
+//				builder.insert(0, s.charAt(i));
+//				if (dict.contains(builder.toString())) {
+//					queue.add(i+1);
+//				}
+//			}
+//		}
+        
+//        StringBuilder builder = new StringBuilder();
+//        for (int i = s.length()-1; i >= 0; i--) {
+//			builder.insert(0, s.charAt(i));
+//			if (dict.contains(builder.toString())) {
+//				if (wordBreak(s.substring(0,i), dict)) {
+//					return true;
+//				}
+//			}
+//		}
+//        for (int i = 0; i < s.length(); i++) {
+//        	builder.append(s.charAt(i));
+//        	
+//        	if (dict.contains(builder.toString())) {
+//        		if (wordBreak(s.substring(i+1), dict)) {
+//					return true;
+//				}
+//			}
+//		}
+        
+        return false;
+    }
+}

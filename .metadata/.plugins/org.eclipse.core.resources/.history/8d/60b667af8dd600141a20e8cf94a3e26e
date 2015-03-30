@@ -1,0 +1,21 @@
+package nju.edu.cn.leetcode;
+
+import java.util.Set;
+
+public class WordBreak {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean wordBreak(String s, Set<String> dict) {
+        if (dict == null || dict.isEmpty() || s.length() == 0) {
+			return false;
+		}
+        
+        
+        
+        return false;
+    }
+}
