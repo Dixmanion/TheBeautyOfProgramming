@@ -1,0 +1,34 @@
+package nju.edu.cn.leetcode;
+
+import java.util.Arrays;
+
+public class UniqueBinarySearchTrees {
+	
+	boolean[] occupied;
+	
+	public int numTrees(int n) {
+		
+		occupied = new boolean[n+1];
+		Arrays.fill(occupied, false);
+		
+        int result = 0;
+        
+        
+        return result;
+    }
+	
+	private int BSTNums(int length) {
+		int result = 0;
+		
+		if (length == 1) return 1;
+		if (length == 2) return 2;
+		
+		for (int i = 0; i < length; i++) {
+			occupied[i] = true;
+			
+			occupied[i] = false;
+		}
+		return result;
+	}
+
+}

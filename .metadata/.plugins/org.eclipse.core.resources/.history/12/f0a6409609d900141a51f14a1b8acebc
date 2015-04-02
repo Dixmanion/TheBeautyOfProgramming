@@ -1,0 +1,48 @@
+package nju.edu.cn.leetcode;
+
+import java.util.Arrays;
+
+public class UniqueBinarySearchTrees {
+	
+	public static void main(String[] args) {
+		UniqueBinarySearchTrees uniqueBinarySearchTrees = new UniqueBinarySearchTrees();
+		System.out.println(uniqueBinarySearchTrees.numTrees(4));
+	}
+	
+	boolean[] occupied;
+	int MAX_LENGTH;
+	int[] numTrees;
+	
+	public int numTrees(int n) {
+		
+		occupied = new boolean[n+1];
+		Arrays.fill(occupied, false);
+		MAX_LENGTH = n;
+		numTrees = new int[n+1];//DP
+		Arrays.fill(numTrees, -1);
+		numTrees[0] = 1;
+		numTrees[1] = 1;
+		numTrees[2] = 2;
+		
+        return BSTNums(n);
+    }
+	
+	private int BSTNums(int length) {
+		int result = 0;
+		
+		if (numTrees[length] != -1) return numTrees[length];
+		
+		for (int i = 0; i < length; i++) {
+			//左子树的可能性
+			int leftNum = BSTNums(i);
+			//右子树的可能性
+			int rightNum = BSTNums(length-1-i);
+			//相乘
+			result = leftNum*rightNum + result;
+			occupied[i] = false;
+		}
+		if (numTrees[length] == 0) numTrees[length] = result;
+		return result;
+	}
+	
+}

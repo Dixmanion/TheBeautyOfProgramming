@@ -1,0 +1,22 @@
+package nju.edu.cn.leetcode;
+
+public class LinkedListReverse {
+	
+	class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	public 
+
+}

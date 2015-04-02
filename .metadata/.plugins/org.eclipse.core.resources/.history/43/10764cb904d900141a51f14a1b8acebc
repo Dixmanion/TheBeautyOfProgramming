@@ -1,0 +1,11 @@
+package nju.edu.cn.leetcode;
+
+public class UniqueBinarySearchTrees {
+	
+	public int numTrees(int n) {
+        int result = 0;
+        
+        return result;
+    }
+
+}

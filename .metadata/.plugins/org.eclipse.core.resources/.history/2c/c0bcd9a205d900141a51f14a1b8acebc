@@ -1,0 +1,29 @@
+package nju.edu.cn.leetcode;
+
+import java.util.Arrays;
+
+public class UniqueBinarySearchTrees {
+	
+	public int numTrees(int n) {
+		
+		boolean[] occupied = new boolean[n+1];
+		
+		Arrays.fill(occupied, false);
+		
+        int result = 0;
+        
+        for (int i = 1; i <= n; i++) {
+        	occupied[i] = true;
+        	
+        	//左子树的可能性
+        	
+        	//右子树的可能性
+        	
+        	occupied[i] = false;
+        	
+        }
+        
+        return result;
+    }
+
+}
