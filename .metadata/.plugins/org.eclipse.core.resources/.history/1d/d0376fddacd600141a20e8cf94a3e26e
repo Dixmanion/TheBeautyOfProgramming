@@ -1,0 +1,18 @@
+package nju.edu.cn.leetcode;
+
+import java.util.List;
+import java.util.Set;
+
+public class WordBreakII {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	public List<String> wordBreak(String s, Set<String> dict) {
+        
+    }
+
+}

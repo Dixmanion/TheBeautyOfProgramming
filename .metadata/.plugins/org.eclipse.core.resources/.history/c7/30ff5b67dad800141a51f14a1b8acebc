@@ -1,0 +1,36 @@
+package nju.edu.cn.leetcode;
+
+import javax.xml.soap.Node;
+
+public class LinkedListCycle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+
+	public class Solution {
+		
+		//利用value存放位置信息
+	    public boolean hasCycle(ListNode head) {
+	        if (head == null || head.next == null) return true;
+	        head.val = 0;
+	        ListNode next = null;
+	    	while (head.next != null) {
+	    		next = head.next;
+	    	}
+	    	return true;
+	    }
+	}
+
+}

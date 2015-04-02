@@ -1,0 +1,43 @@
+package nju.edu.cn.leetcode;
+
+public class LinkedListCycle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+
+	/**
+	 * 快慢指针
+	 * @author eureka
+	 *
+	 */
+	public class Solution {
+		
+		public boolean hasCycle(ListNode head) {
+			if (head == null || head.next == null) return false;
+			ListNode fast = head;
+			ListNode slow = head;
+			while (fast.next != null && slow.next != null && slow.next.next != null) {
+				fast = fast.next;
+				slow = slow.next.next;
+				if (fast.equals(slow)) return true;
+			}
+	        
+			return false;
+	    }
+		
+		
+	}
+
+}

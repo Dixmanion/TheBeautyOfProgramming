@@ -1,0 +1,114 @@
+package nju.edu.cn.leetcode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
+public class WordBreakII {
+
+	public static void main(String[] args) {
+		WordBreakII wordBreakII = new WordBreakII();
+		String string = "a";
+		Set<String> dict = new HashSet<String>();
+		dict.add("a");
+		System.out.println(wordBreakII.wordBreak(string, dict).toString());
+	}
+	
+	private final Map<String, List<String>> cache = new HashMap<String, List<String>>();
+	
+	/**
+	 * 用于判断
+	 * @param dict
+	 * @param str
+	 * @return
+	 */
+	private boolean containsSuffix(Set<String> dict, String str) {
+		for (int i = 0; i < str.length(); i++) {
+			if (dict.contains(str.substring(i))) return true;
+		}
+		return false;
+	}
+	
+	
+	public List<String> wordBreak(String s, Set<String> dict) {
+		
+		if (cache.containsKey(s)) return cache.get(s);
+		
+		List<String> result = new ArrayList<String>();
+		if (dict.contains(s)) result.add(s);
+		for (int i = 0; i < s.length(); i++) {
+			String left = s.substring(0, i);
+			String right = s.substring(i);
+			if (dict.contains(left) && containsSuffix(dict, right)) {
+				for (String word : wordBreak(right, dict)) {
+					result.add(left + " " + word);
+				}
+			}
+		}
+		
+		cache.put(s, result);
+		return result;
+	}
+	
+	Map<Integer, List<String>> valid = new TreeMap<Integer, List<String>>();
+	String string = null;
+	
+	public List<String> wordBreak(String s, Set<String> dict, int i) {
+		string = s;
+        List<String> list = new ArrayList<String>();
+        list.add("");
+        valid.put(s.length(), list);
+        
+        for (int i = s.length()-1; i >= 0 ; i--) {
+        	List<String> l = new ArrayList<String>();
+        	
+        	for (int j = i + 1; j <=s.length(); j++) {
+        		if (dict.contains(s.substring(i, j))) {
+        			l.add(s.substring(i, j));
+        			if (valid.get(j) != null && !valid.get(j).isEmpty()) {
+        				
+        				for (String word : valid.get(j)) {
+        					l.add(s.substring(i, j) + (j == s.length() ? "" : " ") + word);
+        				}
+        			}
+        		}
+        	}
+        	
+        	valid.put(i, l);
+        }
+        return valid.get(0);
+    }
+	
+	private List<String> getResult(){
+		List<String> resut = new ArrayList<String>();
+		Set<Integer> keySet = (TreeSet<Integer>) valid.keySet();
+		
+		for (Iterator iterator = keySet.iterator(); iterator.hasNext();) {
+			List<String> values = valid.get(iterator.next());
+			
+		}
+		
+		return resut;
+	}
+	
+	private List<String> dfs(int i, int length) {
+		List<String> result = new ArrayList<String>();
+		
+		if (i + length == string.length()) {
+			result.add("");
+		} else {
+			List<String> current = valid.get(i);
+			List<String> next = dfs(i, length);
+			
+		}
+		
+		return result;
+	}
+
+}

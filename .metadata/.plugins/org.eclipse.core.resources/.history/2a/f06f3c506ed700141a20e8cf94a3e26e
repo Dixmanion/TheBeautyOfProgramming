@@ -1,0 +1,33 @@
+package nju.edu.cn.leetcode;
+
+public class LinkedListCycle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	class ListNode {
+		int val;
+		ListNode next;
+
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+
+	public class Solution {
+		
+		//利用value存放位置信息
+	    public boolean hasCycle(ListNode head) {
+	        if (head == null || head.next == null) return true;
+	        head.val = 0;
+	    	while (head.next != null) {
+	    		
+	    	}
+	    	return true;
+	    }
+	}
+
+}

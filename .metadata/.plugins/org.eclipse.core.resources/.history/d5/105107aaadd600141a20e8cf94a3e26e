@@ -1,0 +1,28 @@
+package nju.edu.cn.leetcode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class WordBreakII {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	
+	public List<String> wordBreak(String s, Set<String> dict) {
+        Map<Integer, List<String>> valid = new HashMap<Integer, List<String>>();
+        
+        List<String> list = new ArrayList<String>();
+        list.add("");
+        valid.put(s.length(), list);
+        
+        
+        return valid.get(0);
+    }
+
+}
